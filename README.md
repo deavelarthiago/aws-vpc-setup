@@ -1,17 +1,15 @@
 #####################################################################################
-
 **aws-vpc-setup**
+#####################################################################################
 
-##################################################################################################
-
-Purpose:
+## Purpose: ##
 This repository provides Terraform configurations to set up a VPC within AWS, including public and private subnets spanning multiple availability zones.
 
-Prerequisites:
+## Prerequisites: ##
 - Terraform v0.12.x or higher;
 - AWS account with access configured in your development environment and with the necessary permissions to create all resources.
 
-Created Resources:
+## Created Resources: ##
 **VPC** Sets up a VPC within the specified CIDR range.
 **Public Subnets** For resources that must be directly accessible from the internet.
 **Private Subnets** For resources that shouldn't be directly accessed from the outside.
@@ -23,7 +21,7 @@ Created Resources:
 - The value provided for the environment will be used to name the resources.
     
 An example of how this will work:
-
+```
 variable "environment" {
   description = "Specifies the deployment environment (e.g., dev, staging, production)."
   type        = string
@@ -38,7 +36,7 @@ resource "aws_vpc" "main" {
   **Name        = "vpc-for-${var.environment}-environment"**
   }
 }
-
+```
 As the selected environment was **dev** the VPC name will be: `vpc-for-dev-environment`
 
 Before using the provided code, consider following the best practice of managing the Terraform backend. This ensures that the infrastructure is managed consistently and securely, especially in collaborative environments where multiple people or teams may be configuring resources simultaneously. With a centralized and versioned tfstate, conflicts and errors from outdated states are avoided, and auditing and restoring previous versions become possible, increasing the reliability and transparency of the entire operation.
